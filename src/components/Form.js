@@ -12,11 +12,31 @@ const DEFAULT_STATE = {
 }
 
 class Form extends Component {
-  state = {
-    ...DEFAULT_STATE
+  
+  // state = {
+  //   ...DEFAULT_STATE
+  // }
+
+  constructor(props) {
+    console.log("Form.js props:")
+    console.log(props)
+    super(props)
+    this.state = {
+      ...DEFAULT_STATE
+    }
   }
 
-  handleSubmit() {
+  // handleSubmit(event) {
+  //   event.preventDefault()
+  //   document.getElementById("order-form").reset()
+  //   this.props.addOrder(this.state)
+
+  //   this.setState({
+  //     ...DEFAULT_STATE
+  //   })
+  // }
+
+  handleSubmit = (event) => {
     event.preventDefault()
     document.getElementById("order-form").reset()
     this.props.addOrder(this.state)
@@ -26,9 +46,11 @@ class Form extends Component {
     })
   }
 
-  handleChange() {
+  handleChange = (event) => {
     const itemType = event.target.name
     const item = event.target.value
+    console.log(itemType)
+    console.log(item)
 
     !this.state[`${itemType}`].includes(item) ?
       this.setState({
@@ -41,6 +63,23 @@ class Form extends Component {
         )
       })
   }
+
+  // handleChange(event) {
+  //   const itemType = event.target.name
+  //   const item = event.target.value
+
+
+  //   !this.state[`${itemType}`].includes(item) ?
+  //     this.setState({
+  //       [itemType]: this.state[`${itemType}`].concat(item)
+  //     })
+  //   :
+  //     this.setState({
+  //       [itemType]: this.state[`${itemType}`].filter(
+  //         ingr => ingr !== item
+  //       )
+  //     })
+  // }
 
   render() {
     return(

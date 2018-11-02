@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
-import Form from './Form'
-import Order from './Order'
+import Form from './components/Form'
+import Order from './components/Order'
 
 class App extends Component {
-  state: {
+  
+  state = {
     orders: []
   }
 
@@ -15,8 +16,9 @@ class App extends Component {
   }
 
   render() {
+
     const orders = this.state.orders.map( (order, idx) => {
-      <Order key={idx} {...order} />
+      return <Order key={idx} {...order} />
     })
 
     return (
@@ -25,7 +27,7 @@ class App extends Component {
           <img src={ require('./images/logo.png') } className="App-logo" alt="logo" />
         </header>
 
-        <Form />
+        <Form addOrder={this.addOrder} />
 
         <div className="ui raised container segment">
           <h1 className="ui block header">All Orders</h1>
@@ -39,3 +41,15 @@ class App extends Component {
 }
 
 export default App
+
+
+// displayOrders = () => {
+//   let orders;
+//   if (this.state.orders.length > 0) {
+    
+//     this.state.orders.map( (order, idx) => {
+//       orders += <Order key={idx} {...order} />
+//     })
+//   }
+//   return orders 
+// }
